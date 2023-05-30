@@ -1,0 +1,38 @@
+pipeline:
+  name: testing-swiftdoc
+  identifier: testingswiftdoc
+  projectIdentifier: NgLabs
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitconnectordhruba
+        repoName: swift-doc-test
+        build: <+input>
+  stages:
+    - stage:
+        name: test
+        identifier: test
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Action
+                  name: Generate Documentation
+                  identifier: Generate_Documentation
+                  spec:
+                    uses: SwiftDocOrg/swift-doc@master
+                    with:
+                      inputs: "\"Sources\""
+                      module-name: plugins-testing
+                      output: "\"Documentation\""
