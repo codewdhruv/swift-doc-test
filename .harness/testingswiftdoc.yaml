@@ -12,8 +12,113 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: test
-        identifier: test
+        name: testarm64
+        identifier: testarm4
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Action
+                  name: Generate Documentation
+                  identifier: Generate_Documentation
+                  spec:
+                    uses: SwiftDocOrg/swift-doc@master
+                    with:
+                      inputs: "\"Sources\""
+                      module-name: plugins-testing
+                      output: "\"Documentation\""
+              - step:
+                  type: Action
+                  name: Upload Documentation to Wiki
+                  identifier: Upload_Documentation_to_Wiki
+                  spec:
+                    uses: SwiftDocOrg/github-wiki-publish-action@v1
+                    with:
+                      path: "\"Documentation\""
+                    env:
+                      GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
+    - stage:
+        name: testamd64
+        identifier: testamd64
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Action
+                  name: Generate Documentation
+                  identifier: Generate_Documentation
+                  spec:
+                    uses: SwiftDocOrg/swift-doc@master
+                    with:
+                      inputs: "\"Sources\""
+                      module-name: plugins-testing
+                      output: "\"Documentation\""
+              - step:
+                  type: Action
+                  name: Upload Documentation to Wiki
+                  identifier: Upload_Documentation_to_Wiki
+                  spec:
+                    uses: SwiftDocOrg/github-wiki-publish-action@v1
+                    with:
+                      path: "\"Documentation\""
+                    env:
+                      GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
+    - stage:
+        name: testk8s
+        identifier: testk8s
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Action
+                  name: Generate Documentation
+                  identifier: Generate_Documentation
+                  spec:
+                    uses: SwiftDocOrg/swift-doc@master
+                    with:
+                      inputs: "\"Sources\""
+                      module-name: plugins-testing
+                      output: "\"Documentation\""
+              - step:
+                  type: Action
+                  name: Upload Documentation to Wiki
+                  identifier: Upload_Documentation_to_Wiki
+                  spec:
+                    uses: SwiftDocOrg/github-wiki-publish-action@v1
+                    with:
+                      path: "\"Documentation\""
+                    env:
+                      GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
+    - stage:
+        name: testdocker
+        identifier: testdocker
         description: ""
         type: CI
         spec:
