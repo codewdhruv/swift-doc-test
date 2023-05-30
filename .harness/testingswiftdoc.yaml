@@ -45,4 +45,4 @@ pipeline:
                     with:
                       path: Documentation
                     env:
-                      GH_PERSONAL_ACCESS_TOKEN: test
+                      GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("gitpatdhruba")>
