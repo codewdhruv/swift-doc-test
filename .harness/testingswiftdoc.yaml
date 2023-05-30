@@ -36,3 +36,13 @@ pipeline:
                       inputs: "\"Sources\""
                       module-name: plugins-testing
                       output: "\"Documentation\""
+              - step:
+                  type: Action
+                  name: Upload Documentation to Wiki
+                  identifier: Upload_Documentation_to_Wiki
+                  spec:
+                    uses: SwiftDocOrg/github-wiki-publish-action@v1
+                    with:
+                      path: Documentation
+                    env:
+                      GH_PERSONAL_ACCESS_TOKEN: test
