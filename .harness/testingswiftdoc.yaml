@@ -82,73 +82,73 @@ pipeline:
                           path: "\"Documentation\""
                         env:
                           GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
-    - stage:
-        name: windowsarm64
-        identifier: windowsarm64
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          execution:
-            steps:
-              - step:
-                  type: Action
-                  name: Generate Documentation
-                  identifier: Generate_Documentation
-                  spec:
-                    uses: SwiftDocOrg/swift-doc@master
-                    with:
-                      inputs: "\"Sources\""
-                      module-name: plugins-testing
-                      output: "\"Documentation\""
-              - step:
-                  type: Action
-                  name: Upload Documentation to Wiki
-                  identifier: Upload_Documentation_to_Wiki
-                  spec:
-                    uses: SwiftDocOrg/github-wiki-publish-action@v1
-                    with:
-                      path: "\"Documentation\""
-                    env:
-                      GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
-          platform:
-            os: Windows
-            arch: Arm64
-          runtime:
-            type: Cloud
-            spec: {}
-    - stage:
-        name: windowsamd64
-        identifier: windowsamd64
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          platform:
-            os: Windows
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
-          execution:
-            steps:
-              - step:
-                  type: Action
-                  name: Generate Documentation
-                  identifier: Generate_Documentation
-                  spec:
-                    uses: SwiftDocOrg/swift-doc@master
-                    with:
-                      inputs: "\"Sources\""
-                      module-name: plugins-testing
-                      output: "\"Documentation\""
-              - step:
-                  type: Action
-                  name: Upload Documentation to Wiki
-                  identifier: Upload_Documentation_to_Wiki
-                  spec:
-                    uses: SwiftDocOrg/github-wiki-publish-action@v1
-                    with:
-                      path: "\"Documentation\""
-                    env:
-                      GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
+        - stage:
+            name: windowsarm64
+            identifier: windowsarm64
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              execution:
+                steps:
+                  - step:
+                      type: Action
+                      name: Generate Documentation
+                      identifier: Generate_Documentation
+                      spec:
+                        uses: SwiftDocOrg/swift-doc@master
+                        with:
+                          inputs: "\"Sources\""
+                          module-name: plugins-testing
+                          output: "\"Documentation\""
+                  - step:
+                      type: Action
+                      name: Upload Documentation to Wiki
+                      identifier: Upload_Documentation_to_Wiki
+                      spec:
+                        uses: SwiftDocOrg/github-wiki-publish-action@v1
+                        with:
+                          path: "\"Documentation\""
+                        env:
+                          GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
+              platform:
+                os: Windows
+                arch: Arm64
+              runtime:
+                type: Cloud
+                spec: {}
+        - stage:
+            name: windowsamd64
+            identifier: windowsamd64
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Windows
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Action
+                      name: Generate Documentation
+                      identifier: Generate_Documentation
+                      spec:
+                        uses: SwiftDocOrg/swift-doc@master
+                        with:
+                          inputs: "\"Sources\""
+                          module-name: plugins-testing
+                          output: "\"Documentation\""
+                  - step:
+                      type: Action
+                      name: Upload Documentation to Wiki
+                      identifier: Upload_Documentation_to_Wiki
+                      spec:
+                        uses: SwiftDocOrg/github-wiki-publish-action@v1
+                        with:
+                          path: "\"Documentation\""
+                        env:
+                          GH_PERSONAL_ACCESS_TOKEN: <+secrets.getValue("testplugin")>
