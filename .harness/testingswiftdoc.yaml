@@ -138,5 +138,9 @@ pipeline:
                   identifier: Generate_Documentation
                   spec:
                     uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
+                    with:
+                      inputs: "\"Sources\""
+                      module-name: plugins-testing
+                      output: "\"Documentation\""
         when:
           pipelineStatus: All
