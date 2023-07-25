@@ -1,0 +1,150 @@
+template:
+  name: test-gha-swiftdoc
+  type: Pipeline
+  projectIdentifier: plugintesting
+  orgIdentifier: default
+  spec:
+    properties:
+      ci:
+        codebase:
+          connectorRef: dhrubagit
+          repoName: swift-doc-test
+          build: <+input>
+    stages:
+      - stage:
+          name: linuxamd64
+          identifier: linuxamd64
+          description: ""
+          type: CI
+          spec:
+            cloneCodebase: true
+            platform:
+              os: Linux
+              arch: Amd64
+            runtime:
+              type: Cloud
+              spec: {}
+            execution:
+              steps:
+                - step:
+                    type: Action
+                    name: Generate Documentation
+                    identifier: Generate_Documentation
+                    spec:
+                      uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
+                      with:
+                        inputs: "\"Sources\""
+                        module-name: plugins-testing
+                        output: "\"Documentation\""
+          when:
+            pipelineStatus: All
+      - stage:
+          name: linuxarm64
+          identifier: linuxarm4
+          description: ""
+          type: CI
+          spec:
+            cloneCodebase: true
+            platform:
+              os: Linux
+              arch: Arm64
+            runtime:
+              type: Cloud
+              spec: {}
+            execution:
+              steps:
+                - step:
+                    type: Action
+                    name: Generate Documentation
+                    identifier: Generate_Documentation
+                    spec:
+                      uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
+                      with:
+                        inputs: "\"Sources\""
+                        module-name: plugins-testing
+                        output: "\"Documentation\""
+          when:
+            pipelineStatus: All
+      - stage:
+          name: windowsarm64
+          identifier: windowsarm64
+          description: ""
+          type: CI
+          spec:
+            cloneCodebase: true
+            execution:
+              steps:
+                - step:
+                    type: Action
+                    name: Generate Documentation
+                    identifier: Generate_Documentation
+                    spec:
+                      uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
+                      with:
+                        inputs: "\"Sources\""
+                        module-name: plugins-testing
+                        output: "\"Documentation\""
+            platform:
+              os: Windows
+              arch: Arm64
+            runtime:
+              type: Cloud
+              spec: {}
+          when:
+            pipelineStatus: All
+      - stage:
+          name: windowsamd64
+          identifier: windowsamd64
+          description: ""
+          type: CI
+          spec:
+            cloneCodebase: true
+            platform:
+              os: Windows
+              arch: Amd64
+            runtime:
+              type: Cloud
+              spec: {}
+            execution:
+              steps:
+                - step:
+                    type: Action
+                    name: Generate Documentation
+                    identifier: Generate_Documentation
+                    spec:
+                      uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
+                      with:
+                        inputs: "\"Sources\""
+                        module-name: plugins-testing
+                        output: "\"Documentation\""
+          when:
+            pipelineStatus: All
+      - stage:
+          name: mac-arm64
+          identifier: macarm64
+          description: ""
+          type: CI
+          spec:
+            cloneCodebase: true
+            platform:
+              os: MacOS
+              arch: Arm64
+            runtime:
+              type: Cloud
+              spec: {}
+            execution:
+              steps:
+                - step:
+                    type: Action
+                    name: Generate Documentation
+                    identifier: Generate_Documentation
+                    spec:
+                      uses: SwiftDocOrg/swift-doc@1.0.0-rc.1
+                      with:
+                        inputs: "\"Sources\""
+                        module-name: plugins-testing
+                        output: "\"Documentation\""
+          when:
+            pipelineStatus: All
+  identifier: testghaswiftdoc
+  versionLabel: v0
